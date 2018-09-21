@@ -6,22 +6,22 @@ import os.path
 
 # API キーの情報
 
-key = "54dd7f9cc449a30be6a29cfb438c6574"
-secret = "f6c5abf555890eea"
+key = "###取得したkeyを入力"
+secret = "###取得したsecretを入力"
 
 # 重要：リクエストを送るタイミングが短すぎると画像取得先のサーバを逼迫してしまうか、
 # スパムとみなされてしまう可能性があるので、待ち時間を 1 秒間設ける。
 wait_time = 1
 
 # コマンドライン引数の 1 番目の値を取得
-vehiclename = input('検索項目>>')#本来はsys.argv[1]でコマンドラインから引数を取得
+name = input('検索項目>>')#本来はsys.argv[1]でコマンドラインから引数を取得
 # 画像を保存するディレクトリを作成
-if os.path.isdir(vehiclename) == False:
-    os.mkdir(vehiclename)
+if os.path.isdir(name) == False:
+    os.mkdir(name)
 else:
     pass
 # 画像を保存するディレクトリを指定
-savedir = "./" + vehiclename
+savedir = "./" + name
 
 # FlickrAPI にアクセス
 
@@ -29,7 +29,7 @@ savedir = "./" + vehiclename
 flickr = FlickrAPI(key, secret, format='parsed-json')
 result = flickr.photos.search(
     # 検索キーワード
-    text = vehiclename,
+    text = name,
     # 取得するデータ件数
     per_page = 50,
     # 検索するデータの種類(ここでは、写真)
